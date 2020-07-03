@@ -2,9 +2,9 @@ import sys
 import numpy as np
 
 #Parameters
-__PARAMETER_SET__ = 2
+__PARAMETER_SET__ = 1
 __NUMBER_OF_SIGS__ = 1024
-__ROOT_FILENAME__ = "PARA" + str(__PARAMETER_SET__)
+__ROOT_FILENAME__ = "PARA-" + str(__PARAMETER_SET__)
 
 #Cryptanalysis parameters
 __THRESHOLD__ = 300
@@ -101,7 +101,6 @@ def recoverE(H, S, random_support, maximum_weight, params):
 
 	#We want to recover E line by line, using the fact that we know which columns are from R
 	for line in range(0, kprime):
-		print(line)
 		while 1:
 			#Build a support for the ISD
 			support = list(random_support)
@@ -114,6 +113,7 @@ def recoverE(H, S, random_support, maximum_weight, params):
 
 			if E_line != 0 and hamming_weight(E_line) <= maximum_weight:
 				E[line] = E_line
+				print "Number of sk recovered lines: %d/%d" % (line, kprime)
 				break
 
 	return E
@@ -200,4 +200,5 @@ def main():
 	else:
 		print("Secret key not recovered")
 
-main()
+if __name__ == "__main__":
+    main()
