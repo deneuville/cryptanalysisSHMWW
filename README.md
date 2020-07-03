@@ -1,9 +1,9 @@
 # cryptanalysisSHMWW
-Cryptanalysis of Song *et al.* code-based signature scheme [Theoretical Computer Science](https://doi.org/10.1016/j.tcs.2020.05.011)
+Cryptanalysis of Song *et al.* code-based signature scheme, publishesd in [Theoretical Computer Science](https://doi.org/10.1016/j.tcs.2020.05.011)
 
 This repository hosts:
 1. a (raw) sage implementation of the code-based signature scheme proposed by Song, Huang, Mu, Wu, and Wang [Theoretical Computer Science](https://doi.org/10.1016/j.tcs.2020.05.011) (file `SHMWW.sage`),
-1. an cryptanalysis implementation that recovers the secret key from a few hundreds of signatures (file `SHMWW_cryptanalysis.sage`). 
+1. a cryptanalysis implementation that recovers the secret key from a few hundreds of signatures (file `SHMWW_cryptanalysis.sage`). 
 
 ## Generating an instance and signatures
 
@@ -11,7 +11,7 @@ Song *et al.* proposed two sets of parameters: PARA-1 and PARA-2 respectively ta
 
 To generate an instance of PARA-X along with N signatures for that instance:
 1. Modify line 4 of `SHMWW.sage` into `__PARAMETER_SET__ = X`
-1. Modify line 5 of `SHMWW.sage` into `__NUMBER_OF_SIGS__ = 576`
+1. Modify line 5 of `SHMWW.sage` into `__NUMBER_OF_SIGS__ = N`
 1. Run `sage`
 1. Load and run the script: `%runfile SHMWW.sage`
 
@@ -29,7 +29,7 @@ This script generates three files:
 [ last line of S  ]
 ]
 ```
-1. `PARA-Xsk` that contains the secret key under the form
+2. `PARA-Xsk` that contains the secret key under the form
 ```
 [
 [ first line of E ]
@@ -37,7 +37,7 @@ This script generates three files:
 [ last line of E  ]
 ]
 ```
-1. `PARA-Xsig` that contains N signatures under the form
+3. `PARA-Xsig` that contains N signatures under the form
 ```
 [ vector z of length n  ]
 [ vector c of length k' ]
