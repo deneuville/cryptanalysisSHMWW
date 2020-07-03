@@ -2,12 +2,12 @@ import sys
 import numpy as np
 
 #Parameters
-__PARAMETER_SET__ = 1
-__NUMBER_OF_SIGS__ = 1024
-__ROOT_FILENAME__ = "PARA-" + str(__PARAMETER_SET__)
+__PARAMETER_SET__ = 2
+__NUMBER_OF_SIGS__ = 256
+__ROOT_FILENAME__ = "PARA" + str(__PARAMETER_SET__)
 
 #Cryptanalysis parameters
-__THRESHOLD__ = 300
+__THRESHOLD__ = 0 #Needs to be initialised by the initThreshold function
 
 """
   " utility routines :: beginning
@@ -75,6 +75,18 @@ def hamming_weight(vector):
   " Cryptanalysis routines :: begin
 """
 
+def initThreshold(params):
+	n, k, nprime, kprime, l, w1, w2, dGV = params
+	
+	random_proba = 0.5
+	biased_proba = (w1 / k) + (w2 / n) * (1 - 2*(w1 / k))
+
+	mean = (random_proba + biased_proba) / 2
+
+	global __THRESHOLD__
+	__THRESHOLD__ = mean * __NUMBER_OF_SIGS__
+
+
 def ISD_try(H, S, column, support, params):
 	n, k, nprime, kprime, l, w1, w2, dGV = params
 	#Build the system
@@ -113,7 +125,7 @@ def recoverE(H, S, random_support, maximum_weight, params):
 
 			if E_line != 0 and hamming_weight(E_line) <= maximum_weight:
 				E[line] = E_line
-				print "Number of sk recovered lines: %d/%d" % (line, kprime)
+				print "Number of sk recovered lines: %d/%d" % (line+1, kprime)
 				break
 
 	return E
@@ -167,6 +179,9 @@ def main():
 	n, k, nprime, kprime, l, w1, w2, dGV = params = setup(__PARAMETER_SET__)
 	#Cryptanalysis example
 	(pk, sk, signatures) = loadFiles(__ROOT_FILENAME__ + "pk", __ROOT_FILENAME__ + "sk", __ROOT_FILENAME__ + "sigs", params)
+
+	#Initialize the threshold
+	initThreshold(params)
 
 	#Check weights from the E matrix for future verification
 	sk_weights = []
