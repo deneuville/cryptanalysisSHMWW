@@ -3,9 +3,9 @@ import numpy as np # used for generating permutations
 
 __PARAMETER_SET__ = 1
 __NUMBER_OF_SIGS__ = 1024
-__ROOT_FILENAME__ = "PARA"+str(__PARAMETER_SET__)+"bis_"
-__MANUAL_SETUP__ = 1 # Change to 1 to specify the instance, filename, and number of signatures to generate 
-__VERBOSE__ = 0 # Change to 0 when done cryptanalysing
+__ROOT_FILENAME__ = "PARA-"+str(__PARAMETER_SET__)
+__MANUAL_SETUP__ = 0 # Change to 1 to specify the instance, filename, and number of signatures to generate 
+__VERBOSE__ = 1 # Change to 0 when done cryptanalysing
 
 """
   " utility routines :: beginning
@@ -214,7 +214,7 @@ def main():
 			if __VERBOSE__ == 1:
 				print "Passed verification!"
 		if __VERBOSE__ == 1:
-			print "Storing %d generated succesfully." % (i+1)
+			print "Storing signature %d." % (i+1)
 		z, c, commitment = sig
 		f.write("[")
 		storeVect(n, z, f)
@@ -227,7 +227,7 @@ def main():
 		f.write("]\n\n")
 	f.close()
 
-
-
+if __name__ == "__main__":
+    main()
 
 
