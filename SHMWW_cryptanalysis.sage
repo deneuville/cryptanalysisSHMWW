@@ -2,9 +2,9 @@ import sys
 import numpy as np
 
 #Parameters
-__PARAMETER_SET__ = 2
+__PARAMETER_SET__ = 1
 __NUMBER_OF_SIGS__ = 256
-__ROOT_FILENAME__ = "PARA" + str(__PARAMETER_SET__)
+__ROOT_FILENAME__ = "PARA-" + str(__PARAMETER_SET__)
 
 #Cryptanalysis parameters
 __THRESHOLD__ = 0 #Needs to be initialised by the initThreshold function
