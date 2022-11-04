@@ -1,5 +1,5 @@
 # cryptanalysisSHMWW
-Cryptanalysis of Song *et al.* code-based signature scheme, publishesd in [Theoretical Computer Science](https://doi.org/10.1016/j.tcs.2020.05.011)
+Cryptanalysis of Song *et al.* code-based signature scheme, published in [Theoretical Computer Science](https://doi.org/10.1016/j.tcs.2020.05.011)
 
 This repository hosts:
 1. a (raw) sage implementation of the code-based signature scheme proposed by Song, Huang, Mu, Wu, and Wang [Theoretical Computer Science](https://doi.org/10.1016/j.tcs.2020.05.011) (file `SHMWW.sage`),
@@ -7,7 +7,7 @@ This repository hosts:
 
 ## Generating an instance and signatures
 
-Song *et al.* proposed two sets of parameters: PARA-1 and PARA-2 respectively targeting 80 and 128 bits of classical security (see Table 1 of [SHMWW]).
+Song *et al.* proposed two sets of parameters: PARA-1 and PARA-2 respectively targeting 80 and 128 bits of classical security (see Table 1 of [SHMWW20]).
 
 To generate an instance of PARA-X along with N signatures for that instance:
 1. Modify line 4 of `SHMWW.sage` into `__PARAMETER_SET__ = X`
@@ -44,7 +44,7 @@ This script generates three files:
 [ commitment vector of length n-k ]
 ```
 
-For cryptanalytic purposes, the use of a weight restricted hash (WRH) function is not mandatory. Instead, we generate the challenge as a vector c of same lenght (h') and weight (w_1) as the output of the WRH function described in [SHMWW].
+For cryptanalytic purposes, the use of a weight restricted hash (WRH) function is not mandatory. Instead, we generate the challenge as a vector c of same lenght (h') and weight (w_1) as the output of the WRH function described in [SHMWW20].
 
 Verbose mode can be turned off by setting `__VERBOSE__ = 0` on line 8 of `SHMWW.sage`. Manual configuration on the fly can be turned on by setting `__MANUAL_SETUP__ = 1` on line 7 of `SHMWW.sage`.
 
@@ -61,6 +61,11 @@ Depending on the instance, the number of signatures available and your machine, 
 
 ## Technical details and reference
 
-The technical details about the cryptanalysis will be soon provided in a complete paper.
+The technical details about the cryptanalysis are available in this paper [ADG20].
 
-[SHMWW] Song, Y., Huang, X., Mu, Y., Wu, W., & Wang, H. (2020). *A code-based signature scheme from the Lyubashevsky framework*. Theoretical Computer Science.
+2021 update: This work has been merged with a concurrent work and further improved. Check details on [this page](https://github.com/deneuville/cryptanalysisSHMWW_C).
+
+[ADG20] Aragon, N., Deneuville, J.-C., & Gaborit, P. (2020). *Another code-based adaptation of Lyubashevsky’s signature cryptanalysed*. [ePrint2020/923](https://eprint.iacr.org/2020/923)
+
+[SHMWW20] Song, Y., Huang, X., Mu, Y., Wu, W., & Wang, H. (2020). *A code-based signature scheme from the Lyubashevsky framework*. [Theoretical Computer Science, Volume 835, 2 October 2020, Pages 15-30](https://www.sciencedirect.com/science/article/pii/S0304397520302723)
+
